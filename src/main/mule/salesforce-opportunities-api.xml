@@ -129,6 +129,17 @@ output application/json
                 <ee:set-variable variableName="id">attributes.uriParams.'id'</ee:set-variable>
             </ee:variables>
         </ee:transform>
-		<flow-ref doc:name="common-sfdc-callsFlow" doc:id="ad4e313d-fdb1-4f4d-9205-6986e84daa74" name="common-sfdc-callsFlow"/>
+        <flow-ref doc:name="common-sfdc-callsFlow" doc:id="ad4e313d-fdb1-4f4d-9205-6986e84daa74" name="common-sfdc-callsFlow" />
+    </flow>
+    <flow name="get:\gettime:salesforce-opportunities-api-config">
+        <ee:transform doc:name="Transform Message" doc:id="07add9ab-d718-437d-8c49-a124276bbd1a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+now()]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" message="#[payload]" />
     </flow>
 </mule>
